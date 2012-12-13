@@ -1,3 +1,4 @@
+#!/usr/bin/python2.7
 # A python xkcd wallpaper setter
 # Uses feh
 # Changes .fehbg to the latest xkcd
@@ -19,10 +20,7 @@ name = soup('div',id = 'comic')[0].img['alt']
 
 name = path + '/' + name + '.png'
 
-if not os.path.isfile(name):
-	f = open(name,'w')
-	call(['curl',imgurl],stdout = f)
-	feh = 'feh  --bg-center ' +  name
-	f = open('/home/'+ user + '/.fehbg' , 'w')
-	f.write(feh)
+f = open(name,'w')
+call(['curl','-s',imgurl],stdout = f)
+call(['feh','--bg-center', name])
 	
